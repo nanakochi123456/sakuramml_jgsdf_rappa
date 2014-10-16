@@ -1,0 +1,53 @@
+曲名={"陸上自衛隊　消灯"};
+作者={"ぱぷぅ"};
+
+Int MA2=1
+
+IF(MA2==1) {
+	r96
+	TrackSync
+}
+
+Function SelVoice(midi,ma2) {
+  IF(MA2==0) {
+    音色(midi)
+  }
+  IF(MA2==1) {
+    IF(ma2>128) {
+      音色(ma2-128,122,2)
+    } ELSE {
+      音色(ma2,122,0)
+    }
+  }
+}
+
+Function ChannelReserve(value) {	// MA-2のチャンネル同時発音数設定
+  IF(MA2 <> 0) {
+    y55,value
+  }
+}
+トラック 1;
+	ChannelReserve(1)
+
+SelVoice(Trumpet,1+128)
+v127
+//Expression(127)
+
+Tempo 80
+q90
+l12
+[2
+q90g2d4gdg
+q95b2g4.r8
+q90b2g4bgb>
+q90d2^8r8d6d
+q90d2^12<bg>d<bg
+d2^8r8d6d
+q95g2bgdb6d
+g2^12r6d6d
+g2^12r6d6d
+g2.r4
+
+]
+v1
+c64

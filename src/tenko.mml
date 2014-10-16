@@ -1,0 +1,47 @@
+曲名={"陸上自衛隊　点呼"};
+作者={"ぱぷぅ"};
+/*
+点呼
+*/
+
+Int MA2=1
+
+IF(MA2==1) {
+	r96
+	TrackSync
+}
+
+Function SelVoice(midi,ma2) {
+  IF(MA2==0) {
+    音色(midi)
+  }
+  IF(MA2==1) {
+    IF(ma2>128) {
+      音色(ma2-128,122,2)
+    } ELSE {
+      音色(ma2,122,0)
+    }
+  }
+}
+
+Function ChannelReserve(value) {	// MA-2のチャンネル同時発音数設定
+  IF(MA2 <> 0) {
+    y55,value
+  }
+}
+トラック 1;
+	ChannelReserve(1)
+
+SelVoice(Trumpet,1+128)
+Tempo 125
+v127q90
+//Expression(127)
+
+l16
+dd
+grddgrbr>d4.dd
+dr<brgrbrd4.dd
+grddgrbr>dr<brgrdr
+grddgrbrg1r2
+v1
+c64
